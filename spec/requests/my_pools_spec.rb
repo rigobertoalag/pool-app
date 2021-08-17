@@ -31,7 +31,7 @@ RSpec.describe Api::V1::MyPoolsController, type: :request do
 
     it 'manda los atributos de la encuesta' do
       json = JSON.parse(response.body)
-      expect(json["data"].keys).to contain_exactly('id', 'title', 'description', 'expires_at', 'user_id')
+      expect(json["data"]["attributes"].keys).to contain_exactly('id', 'title', 'description', 'expires_at', 'user_id', 'created_at','updated_at')
     end
   end
 
@@ -57,8 +57,8 @@ RSpec.describe Api::V1::MyPoolsController, type: :request do
       end
       it 'responde con la encuesta creada' do
         json = JSON.parse(response.body)
-        puts "\n\n\n --#{json}-- \n\n\n"
-        expect(json["data"]['title']).to eq('Hola mundo')
+        #puts "\n\n\n --#{json}-- \n\n\n"
+        expect(json["data"]["attributes"]['title']).to eq('Hola mundo')
       end
     end
 
@@ -67,7 +67,7 @@ RSpec.describe Api::V1::MyPoolsController, type: :request do
         post '/api/v1/pools/'
       end
 
-      it { puts response.body ; expect(response).to have_http_status(401) }
+      it { expect(response).to have_http_status(401) }
     end
 
     context 'invalid params' do
@@ -80,7 +80,7 @@ RSpec.describe Api::V1::MyPoolsController, type: :request do
       it { expect(response).to have_http_status(422) }
 
       it 'responde con los errores al guardar la respuesta' do
-        puts response.body
+        #puts response.body
         json = JSON.parse(response.body)
         expect(json['errors']).to_not be_empty
       end
@@ -98,7 +98,7 @@ RSpec.describe Api::V1::MyPoolsController, type: :request do
 
       it 'actualizar la encuesta indicada' do
         json = JSON.parse(response.body)
-        expect(json["data"]['title']).to eq('Nuevo titulo')
+        expect(json["data"]["attributes"]['title']).to eq('Nuevo titulo')
       end
     end
 

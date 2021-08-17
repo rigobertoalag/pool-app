@@ -1,4 +1,4 @@
-class Api::V1::QuestionsController < ApplicationController
+class Api::V1::QuestionsController < Api::V1::MasterApiController 
   before_action :authenticate, except: %i[index show]
   before_action :set_question, only: %i[show update destroy]
   before_action :set_pool

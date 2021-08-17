@@ -27,8 +27,9 @@ RSpec.describe Api::V1::AnswersController, type: :request do
 
       it 'responde con la respuesta creada' do
         json = JSON.parse(response.body)
-        puts(json)
-        expect(json['description']).to eq(valid_params[:description])
+        # puts(json)
+        # puts("desde valid_param #{valid_params[:description]} ")
+        expect(json["data"]["attributes"]['description']).to eq(valid_params[:description])
       end
     end
   end
@@ -61,12 +62,6 @@ RSpec.describe Api::V1::AnswersController, type: :request do
       expect{
         delete api_v1_pool_answer_path(@pool, @answer), { params: {token: @token.token } }
       }.to change(Answer, :count).by(-1)
-    end
-
-    it "" do 
-      expect{
-        
-      }
     end
   end
 end

@@ -1,9 +1,7 @@
-class Api::V1::MyPoolsController < ApplicationController
+class Api::V1::MyPoolsController < Api::V1::MasterApiController 
   before_action :authenticate, only: %i[create update destroy]
   before_action :set_pool, only: %i[show update destroy]
   before_action(only: [:update, :destroy]) { |controlador| controlador.authenticate_owner(@pool.user) }
-
-  layout "api/v1/application"
   
   def index
     @pools = MyPool.all

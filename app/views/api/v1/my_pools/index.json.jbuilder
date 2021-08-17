@@ -1,5 +1,5 @@
-json.array! @pools do |pool|
-    json.type "my_pools"
-    json.id pool.id
-    json.attributes pool.attributes
-end 
+# json.array! @pools do |pool|
+#     json.partial! "api/v1/resource", resource: pool
+# end 
+
+json.partial! partial: "api/v1/resource", collection: @pools, as: :resource

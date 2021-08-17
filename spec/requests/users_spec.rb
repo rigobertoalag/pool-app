@@ -13,7 +13,7 @@ RSpec.describe Api::V1::UsersController, type: :request do
 
         it "responds with the user found or created" do 
             json = JSON.parse(response.body)
-            puts "\n\n\n --#{json}-- \n\n\n"
+            #puts "\n\n\n --#{json}-- \n\n\n"
             expect(json["email"]).to eq("u@mail3.com")
         end
 
