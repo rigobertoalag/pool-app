@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'sessions/create'
-  # get 'welcome/index'
-  # get 'welcome/app'
+  get 'welcome/index'
+  get 'welcome/app'
   namespace :api, defaults: { format: 'json' } do
     namespace :v1 do
       resources :users, only: [:create]
@@ -15,5 +15,7 @@ Rails.application.routes.draw do
 
   get "/", to: "welcome#index"
   get "/auth/:provider/callback", to: "sessions#create"
+
+  delete "/logout", to: "sessions#destroy"
 
 end

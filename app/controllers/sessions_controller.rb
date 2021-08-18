@@ -1,6 +1,18 @@
 class SessionsController < ApplicationController
   def create
     auth = request.env["omniauth.auth"]
-    raise auth.to_yaml
+    user = User.from_omniauth(auth)
+
+    if user.persisted?
+      session[:user_id] = user.id
+      redirect_to "/", notice: "Ya estas logeado"
+    else
+      redirect_to "/", notice: user.errors.full_messages.to_s
+    end
+  end
+
+  def destroy
+    session[:user_id] = nil
+    redirect_to "/", notice: "Sesion cerrada"
   end
 end
