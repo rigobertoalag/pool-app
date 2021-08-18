@@ -8,9 +8,32 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <nav class="red accent-3">
+        <div class="nav-wrapper">
+          <ul class="hide-on-med-and-down">
+            <li><%= link_to "Inicio", "/" %></li>
+            <% if user_signed_in?%>
+              <li>Hola <%= current_user.email %></li>
+              <ul class="right hide-on-med-and-down">
+                <li><%= link_to "Nueva aplicacion", new_my_app_path %></li>
+                <li><%= link_to "Cerrar sesion", "/logout", method: :delete %></li>
+              </ul>
+            <% else %>
+              <li><%= link_to "Haz click aqui para iniciar sesion", "/auth/google_oauth2" %></li>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <div class="container">
+      <div class="card big-padding">
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>

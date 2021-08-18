@@ -1,5 +1,7 @@
 class Token < ApplicationRecord
   belongs_to :user
+  belongs_to :my_app
+  
   before_create :generate_token
 
   def is_valid?
