@@ -20,6 +20,10 @@ gem 'jbuilder', '~> 2.7'
 
 gem 'valid_email'
 
+gem 'materialize-sass', '~> 1.0'
+
+gem 'omniauth-google-oauth2', '~> 1.0'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
